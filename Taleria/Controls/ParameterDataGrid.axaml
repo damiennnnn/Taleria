@@ -1,0 +1,73 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:Taleria.Controls"
+        xmlns:requests="clr-namespace:Taleria.Requests">
+    <Design.PreviewWith>
+        <controls:ParameterDataGrid />
+    </Design.PreviewWith>
+
+    <Style Selector="controls|ParameterDataGrid">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <StackPanel Orientation="Vertical">
+                    <DataGrid
+                        ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, Path=Parameters}"
+                        IsReadOnly="false">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn IsReadOnly="False">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <PathIcon Data="{StaticResource SemiIconChainStroked}"
+                                                  Height="16"
+                                                  Width="16"
+                                                  x:DataType="requests:Param"
+                                                  IsVisible="{Binding Segment}"
+                                                  Foreground="{DynamicResource SemiGrey7}"
+                                                  ToolTip.Tip="URL segment parameter"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Width="*"
+                                                Header="Name"
+                                                Binding="{Binding Name, Mode=TwoWay}"
+                                                x:DataType="requests:Param"
+                                                IsReadOnly="false" />
+                            <DataGridTextColumn Width="*"
+                                                Header="Value"
+                                                Binding="{Binding Value, Mode=TwoWay}"
+                                                x:DataType="requests:Param"
+                                                IsReadOnly="false" />
+                            <DataGridTemplateColumn IsReadOnly="False">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Theme="{DynamicResource BorderlessButton}"
+                                                Command="{Binding DeleteCommand, RelativeSource={RelativeSource AncestorType=controls:ParameterDataGrid}}"
+                                                CommandParameter="{Binding .}"
+                                                Cursor="Arrow">
+                                            <PathIcon Data="{StaticResource SemiIconDeleteStroked}"
+                                                      Height="16"
+                                                      Width="16"
+                                                      IsVisible="{Binding $parent[DataGridRow].IsPointerOver}"
+                                                      Foreground="{DynamicResource SemiRed3}" />
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Theme="{DynamicResource BorderlessButton}"
+                            Command="{Binding AddCommand, RelativeSource={RelativeSource AncestorType=controls:ParameterDataGrid}}"
+                            Cursor="Arrow">
+                        <StackPanel Orientation="Horizontal">
+                            <PathIcon Data="{StaticResource SemiIconPlusCircleStroked}"
+                                      Width="16"
+                                      Height="16" />
+                            <Label Margin="8,0,0,0"
+                                   Content="Add" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

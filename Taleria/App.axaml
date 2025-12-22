@@ -1,0 +1,30 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:Taleria"
+             x:Class="Taleria.App"
+             xmlns:semi="https://irihi.tech/semi"
+             xmlns:converters="clr-namespace:Taleria.Converters"
+             RequestedThemeVariant="Default">
+    <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <local:ViewLocator />
+    </Application.DataTemplates>
+
+    <Application.Styles>
+        <StyleInclude Source="avares://AvaloniaEdit/Themes/Fluent/AvaloniaEdit.xaml" />
+        <StyleInclude Source="Controls/ParameterDataGrid.axaml"/>
+        <semi:SemiTheme Locale="en-GB" />
+        <semi:ColorPickerSemiTheme />
+        <semi:DataGridSemiTheme />
+        <semi:TreeDataGridSemiTheme />
+        <semi:DockSemiTheme />
+        <semi:AvaloniaEditSemiTheme />
+    </Application.Styles>
+    
+    <Application.Resources>
+        <converters:EnumToStringPresentationConverter x:Key="DefaultEnumToStringPresentationConverter"/>
+        <converters:EnumToUppercaseStringConverter x:Key="EnumToUppercaseStringConverter"/>
+        <converters:MethodEnumToColourConverter x:Key="MethodEnumToColourConverter"/>
+    </Application.Resources>
+</Application>

@@ -8,5 +8,5 @@
         x:Class="Taleria.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="Taleria">
-        <views:TabbedView />
+        <views:CollectionsView />
 </Window>

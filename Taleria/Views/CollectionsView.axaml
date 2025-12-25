@@ -1,0 +1,89 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Taleria.ViewModels"
+             xmlns:views="clr-namespace:Taleria.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Taleria.Views.CollectionsView"
+             x:DataType="vm:CollectionsViewModel">
+    <UserControl.Styles>
+        <Style Selector="PathIcon.LeftArrow">
+            <Setter Property="Data" Value="{StaticResource SemiIconArrowLeft}"></Setter>
+        </Style>
+        <Style Selector="PathIcon.RightArrow">
+            <Setter Property="Data" Value="{StaticResource SemiIconArrowRight}"></Setter>
+        </Style>
+    </UserControl.Styles>
+    <SplitView Name="CollectionsSplitView"
+               DisplayMode="CompactOverlay"
+               PanePlacement="Left">
+        <SplitView.Pane>
+            <Grid RowDefinitions="Auto,*,Auto">
+                <ToggleButton Theme="{DynamicResource OutlineButton}"
+                              Margin="8"
+                              VerticalAlignment="Top"
+                              HorizontalAlignment="Right"
+                              Cursor="Arrow"
+                              IsChecked="{Binding #CollectionsSplitView.IsPaneOpen, Mode=TwoWay}">
+                    <PathIcon
+                        Classes.RightArrow="{Binding !#CollectionsSplitView.IsPaneOpen}"
+                        Classes.LeftArrow="{Binding #CollectionsSplitView.IsPaneOpen}"
+                        Height="16"
+                        Width="16" />
+                </ToggleButton>
+                <Button Theme="{DynamicResource OutlineButton}"
+                        Margin="8"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                        Cursor="Arrow"
+                        IsVisible="{Binding #CollectionsSplitView.IsPaneOpen}">
+                    <PathIcon Data="{StaticResource SemiIconPlusCircleStroked}"
+                              Width="16"
+                              Height="16" />
+                </Button>
+                <TreeView Grid.Row="1"
+                          Margin="2"
+                          IsVisible="{Binding #CollectionsSplitView.IsPaneOpen}"
+                          ItemsSource="{Binding Collections}"
+                          SelectedItem="{Binding SelectedCollection, Mode=TwoWay}">
+                    <TreeView.ItemTemplate>
+                        <TreeDataTemplate ItemsSource="{Binding Children}">
+                            <DockPanel>
+
+                                <TextBox DockPanel.Dock="Left"
+                                         VerticalAlignment="Stretch"
+                                         IsHitTestVisible="{Binding $parent[TreeViewItem].IsSelected}"
+                                         Theme="{DynamicResource LooklessTextBox}"
+                                         Text="{Binding Name}" />
+
+                                <StackPanel Orientation="Horizontal"
+                                            DockPanel.Dock="Right"
+                                            VerticalAlignment="Stretch"
+                                            HorizontalAlignment="Right"
+                                            IsVisible="{Binding Path=IsPointerOver, RelativeSource={RelativeSource AncestorType={x:Type Border}}}">
+                                    <Button Theme="{DynamicResource BorderlessButton}"
+                                            Cursor="Arrow">
+                                        <PathIcon Data="{StaticResource SemiIconDelete}"
+                                                  Width="16"
+                                                  Height="16" />
+                                    </Button>
+
+                                    <Button Theme="{DynamicResource BorderlessButton}"
+                                            Cursor="Arrow">
+                                        <PathIcon Data="{StaticResource SemiIconPlus}"
+                                                  Width="16"
+                                                  Height="16" />
+                                    </Button>
+                                </StackPanel>
+
+                            </DockPanel>
+                        </TreeDataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
+            </Grid>
+        </SplitView.Pane>
+
+        <views:MainView x:Name="CurrentView" DataContext="{Binding SelectedViewModel, Mode=TwoWay}" />
+    </SplitView>
+</UserControl>

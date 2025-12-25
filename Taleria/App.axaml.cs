@@ -21,7 +21,7 @@ public partial class App : Application
         collection.AddViewModels();
         
         var serviceProvider = collection.BuildServiceProvider();
-        var mainViewModel = serviceProvider.GetRequiredService<TabbedViewModel>();
+        var mainViewModel = serviceProvider.GetRequiredService<CollectionsViewModel>();
         
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
@@ -35,7 +35,7 @@ public partial class App : Application
         }
         else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
         {
-            singleViewPlatform.MainView = new TabbedView()
+            singleViewPlatform.MainView = new CollectionsView()
             {
                 DataContext = mainViewModel
             };

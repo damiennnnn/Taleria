@@ -16,5 +16,6 @@ public static class DependencyInjectionExtensions
     {
         collection.AddTransient<MainViewModel>();
         collection.AddTransient<TabbedViewModel>();
+        collection.AddTransient<CollectionsViewModel>();
     }
 }

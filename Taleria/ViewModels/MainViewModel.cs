@@ -115,8 +115,26 @@ public partial class MainViewModel : ViewModelBase
 
         if (response.Headers is not null)
             ResponseHeaders = new(response.Headers.Select<HeaderParameter, Param>(h => h));
+        
+        if (response.ContentType is not "application/json")
+        {
+            IsSuccess = false;
+            ResponseDocument.Text = $"Response is not valid JSON!";
+        }
+        else
+        {
+            try
+            {
+                ResponseDocument.Text = response.Content?.AsIndentedJson();
+            }
+            catch (Exception ex)
+            {
+                IsSuccess = false;
+                ResponseDocument.Text = $"Exception caught: {Environment.NewLine}{ex.Message}";
+            }
+        }
 
-        ResponseDocument.Text = response.Content?.AsIndentedJson();
+
         HasResponse = true;
     }
 

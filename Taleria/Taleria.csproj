@@ -24,6 +24,8 @@
     </PackageReference>
     <PackageReference Include="AvaloniaEdit.TextMate" />
     <PackageReference Include="CommunityToolkit.Mvvm" />
+    <PackageReference Include="Devolutions.AvaloniaTheme.MacOS" />
+    <PackageReference Include="IconPacks.Avalonia.Coolicons" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
     <PackageReference Include="RestSharp" />
     <PackageReference Include="Semi.Avalonia" />

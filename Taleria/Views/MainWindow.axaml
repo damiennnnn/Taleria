@@ -6,6 +6,7 @@
         xmlns:views="using:Taleria.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Taleria.Views.MainWindow"
+        ExtendClientAreaToDecorationsHint="True"
         Icon="/Assets/avalonia-logo.ico"
         Title="Taleria">
         <views:CollectionsView />

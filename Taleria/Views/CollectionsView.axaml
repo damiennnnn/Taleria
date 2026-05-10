@@ -4,15 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:Taleria.ViewModels"
              xmlns:views="clr-namespace:Taleria.Views"
+             xmlns:iconPacks="https://github.com/MahApps/IconPacks.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Taleria.Views.CollectionsView"
              x:DataType="vm:CollectionsViewModel">
     <UserControl.Styles>
-        <Style Selector="PathIcon.LeftArrow">
-            <Setter Property="Data" Value="{StaticResource SemiIconArrowLeft}"></Setter>
+        <Style Selector="iconPacks|PackIconCoolicons.LeftArrow">
+            <Setter Property="Kind" Value="{x:Static iconPacks:PackIconCooliconsKind.ArrowLeftMd}"/>
         </Style>
-        <Style Selector="PathIcon.RightArrow">
-            <Setter Property="Data" Value="{StaticResource SemiIconArrowRight}"></Setter>
+        <Style Selector="iconPacks|PackIconCoolicons.RightArrow">
+            <Setter Property="Kind" Value="{x:Static iconPacks:PackIconCooliconsKind.ArrowRightMd}"/>
         </Style>
     </UserControl.Styles>
     <SplitView Name="CollectionsSplitView"
@@ -26,7 +27,7 @@
                               HorizontalAlignment="Right"
                               Cursor="Arrow"
                               IsChecked="{Binding #CollectionsSplitView.IsPaneOpen, Mode=TwoWay}">
-                    <PathIcon
+                    <iconPacks:PackIconCoolicons
                         Classes.RightArrow="{Binding !#CollectionsSplitView.IsPaneOpen}"
                         Classes.LeftArrow="{Binding #CollectionsSplitView.IsPaneOpen}"
                         Height="16"
@@ -37,10 +38,8 @@
                         VerticalAlignment="Top"
                         HorizontalAlignment="Left"
                         Cursor="Arrow"
+                        Content="{iconPacks:Coolicons AddPlusCircle}"
                         IsVisible="{Binding #CollectionsSplitView.IsPaneOpen}">
-                    <PathIcon Data="{StaticResource SemiIconPlusCircleStroked}"
-                              Width="16"
-                              Height="16" />
                 </Button>
                 <TreeView Grid.Row="1"
                           Margin="2"
@@ -64,16 +63,16 @@
                                             IsVisible="{Binding Path=IsPointerOver, RelativeSource={RelativeSource AncestorType={x:Type Border}}}">
                                     <Button Theme="{DynamicResource BorderlessButton}"
                                             Cursor="Arrow">
-                                        <PathIcon Data="{StaticResource SemiIconDelete}"
+                                        <iconPacks:PackIconCoolicons Kind="ListRemove"
                                                   Width="16"
                                                   Height="16" />
                                     </Button>
 
                                     <Button Theme="{DynamicResource BorderlessButton}"
                                             Cursor="Arrow">
-                                        <PathIcon Data="{StaticResource SemiIconPlus}"
-                                                  Width="16"
-                                                  Height="16" />
+                                        <iconPacks:PackIconCoolicons Kind="AddPlus"
+                                                                     Width="16"
+                                                                     Height="16" />
                                     </Button>
                                 </StackPanel>
 

@@ -5,14 +5,15 @@
              xmlns:vm="using:Taleria.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:views="using:Taleria.Views"
+             xmlns:iconPacks="https://github.com/MahApps/IconPacks.Avalonia"
              x:DataType="vm:TabbedViewModel"
              x:Class="Taleria.Views.TabbedView">
     <UserControl.Styles>
-        <Style Selector="PathIcon.LeftArrow">
-            <Setter Property="Data" Value="{StaticResource SemiIconArrowLeft}"></Setter>
+        <Style Selector="iconPacks|PackIconCoolicons.LeftArrow">
+            <Setter Property="Kind" Value="{x:Static iconPacks:PackIconCooliconsKind.ArrowLeftMd}"/>
         </Style>
-        <Style Selector="PathIcon.RightArrow">
-            <Setter Property="Data" Value="{StaticResource SemiIconArrowRight}"></Setter>
+        <Style Selector="iconPacks|PackIconCoolicons.RightArrow">
+            <Setter Property="Kind" Value="{x:Static iconPacks:PackIconCooliconsKind.ArrowRightMd}"/>
         </Style>
     </UserControl.Styles>
     <SplitView Name="TabbedSplitView"
@@ -26,7 +27,7 @@
                               HorizontalAlignment="Right"
                               Cursor="Arrow"
                               IsChecked="{Binding #TabbedSplitView.IsPaneOpen, Mode=TwoWay}">
-                    <PathIcon
+                    <iconPacks:PackIconCoolicons
                         Classes.RightArrow="{Binding !#TabbedSplitView.IsPaneOpen}"
                         Classes.LeftArrow="{Binding #TabbedSplitView.IsPaneOpen}"
                         Height="16"
@@ -38,7 +39,7 @@
                         <StackPanel Orientation="Horizontal"
                                     VerticalAlignment="Center"
                                     Height="20">
-                            <PathIcon Data="{StaticResource SemiIconSendStroked}"
+                            <iconPacks:PackIconCoolicons Data="{iconPacks:Coolicons ArrowRightMd}"
                                       VerticalAlignment="Center"
                                       Height="18"
                                       Width="18" />

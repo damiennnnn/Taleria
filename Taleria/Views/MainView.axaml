@@ -9,6 +9,7 @@
              xmlns:system="clr-namespace:System;assembly=netstandard"
              xmlns:views="clr-namespace:Taleria.Views"
              xmlns:controls="clr-namespace:Taleria.Controls"
+             xmlns:iconPacks="https://github.com/MahApps/IconPacks.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Taleria.Views.MainView"
              x:DataType="vm:MainViewModel">
@@ -78,20 +79,17 @@
                      Watermark="https://api.example.com/get"
                      Text="{Binding RequestUri, Mode=TwoWay}">
                 <TextBox.InnerLeftContent>
-                    <PathIcon Data="{StaticResource SemiIconChainStroked}"
+                    <iconPacks:PackIconCoolicons Kind="Link" 
                               Height="16"
                               Width="16" />
                 </TextBox.InnerLeftContent>
                 <TextBox.InnerRightContent>
                     <Button Theme="{DynamicResource BorderlessButton}"
+                            Content="{iconPacks:Coolicons ArrowRightMd, Width=16, Height=16}"
                             Command="{Binding SendRequestCommand}"
                             IsEnabled="{Binding !SendRequestCommand.IsRunning}"
                             Margin="0"
                             Cursor="Arrow">
-                        <PathIcon Data="{StaticResource SemiIconSend}"
-                                  Foreground="{Binding SelectedMethod, Converter={StaticResource MethodEnumToColourConverter}}"
-                                  Height="16"
-                                  Width="16" />
                     </Button>
                 </TextBox.InnerRightContent>
                 <TextBox.Styles>

@@ -31,7 +31,6 @@
     <PackageReference Include="Semi.Avalonia.ColorPicker" />
     <PackageReference Include="Semi.Avalonia.DataGrid" />
     <PackageReference Include="Semi.Avalonia.Dock" />
-    <PackageReference Include="Semi.Avalonia.TreeDataGrid" />
     <PackageReference Include="TextMateSharp.Grammars" />
   </ItemGroup>
 </Project>

@@ -17,7 +17,6 @@
         <semi:SemiTheme Locale="en-GB" />
         <semi:ColorPickerSemiTheme />
         <semi:DataGridSemiTheme />
-        <semi:TreeDataGridSemiTheme />
         <semi:DockSemiTheme />
         <semi:AvaloniaEditSemiTheme />
     </Application.Styles>
